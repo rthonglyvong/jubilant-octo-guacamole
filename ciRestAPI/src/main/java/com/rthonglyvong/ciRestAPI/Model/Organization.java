@@ -11,6 +11,10 @@ public class Organization {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long organization_id;
 
+    private String name;
+    private String address;
+    private String phone;
+
     @ManyToMany(mappedBy = "organizations")
     private Set<Users> users = new HashSet<>();
 }
