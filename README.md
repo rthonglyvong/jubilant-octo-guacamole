@@ -32,3 +32,6 @@ http://localhost:8080/deleteUserFromOrganization?userId=1&organizationId=1
 
 Recommend using some type of Rest Client to test the endpoints.
 I used Advance Rest Client which is a chrome app extension. 
+
+
+Note: Web app server will create tables on start up and drop all tables on shutdown
