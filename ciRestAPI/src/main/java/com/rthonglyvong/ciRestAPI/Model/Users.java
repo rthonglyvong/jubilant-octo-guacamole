@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name="Users")
 public class Users {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long user_id;
     @Column(nullable=false)
     private String firstName;

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.rthonglyvong.ciRestAPI.Model.Users;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -24,6 +26,10 @@ public class UserService {
         userRepository.deleteById(user_id);
     }
 
+    public Optional<Users> findUser(long userId) {
+        return userRepository.findById(userId);
+    }
+
     public List<Users> findAll() {
         return (List<Users>) userRepository.findAll();
     }
@@ -35,6 +41,23 @@ public class UserService {
                 save(u);
             });
         });
+    }
+
+    public void deleteUserToOrganization(Long userId, Long organizationId) {
+        userRepository.findById(userId).ifPresent(u -> {
+            organizationRepository.findById(organizationId).ifPresent(o -> {
+                u.getOrganizations().remove(o);
+                save(u);
+            });
+        });
+    }
+
+    public List<Users> findAllUsersInOrganization(long organizationId) {
+        List<Users> retValue = findAll();
+        retValue = retValue.stream().filter(u -> u.getOrganizations().stream()
+                .anyMatch(o -> o.getOrganization_id() == organizationId))
+                .collect(Collectors.toList());
+        return retValue;
     }
 
 }

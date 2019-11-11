@@ -7,7 +7,9 @@ import com.rthonglyvong.ciRestAPI.Model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins={"http://localhost:3000"}) //For a react front end if i have time
@@ -42,9 +44,25 @@ public class CameraIQController {
         return retValue;
     }
 
+    @GetMapping("/getAllUsersInOrganization")
+    public List<Users> getAllUsersInOrganization(@RequestParam long organizationId) {
+        return userService.findAllUsersInOrganization(organizationId);
+    }
+
     @PostMapping("/addUserToOrganization")
     public void addUserToOrganization(@RequestParam long userId,
                                       @RequestParam long organizationId) {
         userService.addUserToOrganization(userId, organizationId);
+    }
+
+    @PostMapping("/deleteUserToOrganization")
+    public void deleteUserToOrganization(@RequestParam long userId,
+                                      @RequestParam long organizationId) {
+        userService.deleteUserToOrganization(userId, organizationId);
+    }
+
+    @GetMapping("/getAllOrganizationsForUser")
+    public Set<Organization> getAllOrganizationsForUser(@RequestParam long userId) {
+        return userService.findUser(userId).map(u -> u.getOrganizations()).orElse(Collections.emptySet());
     }
 }

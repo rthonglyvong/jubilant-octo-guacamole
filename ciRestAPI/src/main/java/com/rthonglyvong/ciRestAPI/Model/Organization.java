@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name="Organization")
 public class Organization {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long organization_id;
 
     private String name;
