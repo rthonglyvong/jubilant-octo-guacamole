@@ -9,7 +9,7 @@ login as the created user and use postgres to create database called: cameraiq
 
 edit application.yml in main/resources with postgres username and password you've set
 
-Run below command in a bash terminal in src directory:
+Run below command in a bash terminal in ciRestAPI directory:
 ./mvnw package && java -jar target/ciRestAPI-0.0.1-SNAPSHOT.jar
 
 Now the server should be running in your localhost:8080
