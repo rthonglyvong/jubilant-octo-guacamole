@@ -15,6 +15,7 @@ Run below command in a bash terminal in ciRestAPI directory:
 Now the server should be running in your localhost:8080
 
 the folowing endpoints exist are used to manipualte the database:
+
 GET:
 
 http://localhost:8080/getAllUsers
@@ -22,6 +23,7 @@ http://localhost:8080/getAllUsers
 http://localhost:8080/getAllOrganizationsForUser?userId=1
 
 POST:
+
 http://localhost:8080/createUser?firstName=f&lastName=T&address=temp&email=thon0045&phone=6124685
 
 http://localhost:8080/createOrganization?name=f&address=orgaddress&phone=6124685
