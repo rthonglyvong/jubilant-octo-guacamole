@@ -56,7 +56,7 @@ public class CameraIQController {
     }
 
     @PostMapping("/deleteUserToOrganization")
-    public void deleteUserToOrganization(@RequestParam long userId,
+    public void deleteUserFromOrganization(@RequestParam long userId,
                                       @RequestParam long organizationId) {
         userService.deleteUserToOrganization(userId, organizationId);
     }
