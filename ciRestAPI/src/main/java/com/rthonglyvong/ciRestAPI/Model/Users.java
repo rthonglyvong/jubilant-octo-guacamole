@@ -1,5 +1,7 @@
 package com.rthonglyvong.ciRestAPI.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +14,13 @@ public class Users {
     private Long user_id;
     @Column(nullable=false)
     private String firstName;
+    @Column(nullable=false)
     private String lastName;
+    @Column(nullable=false)
     private String email;
+    @Column(nullable=false)
     private String address;
+    @Column(nullable=false)
     private String phone;
 
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -23,8 +29,18 @@ public class Users {
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "organization_id") }
     )
+    @JsonManagedReference
     Set<Organization> organizations = new HashSet<>();
 
+    public Users(){}
+
+    public Users(String firstName, String lastName, String email, String address, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+    }
 
     public String getFirstName() {
         return firstName;
